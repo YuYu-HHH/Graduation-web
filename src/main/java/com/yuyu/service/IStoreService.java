@@ -11,4 +11,12 @@ public interface IStoreService {
     ServerResponse<Store> show_Store_bystore(int storeid);
 
     ServerResponse<String> update_Store(Store store);
+
+    ServerResponse<String> show_openstore(String username);
+
+    ServerResponse<String> update_openstore(String username);
+
+    ServerResponse<String> update_closestore(String username);
+
+
 }

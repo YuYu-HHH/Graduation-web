@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuyu.dao.SitMapper" >
+  <resultMap id="BaseResultMap" type="com.yuyu.pojo.Sit" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="storeid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sitnumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yn" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, storeid, sitnumber, yn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuyu.pojo.Sit" >
+    insert into sit (id, storeid, sitnumber, 
+      yn)
+    values (#{id,jdbcType=INTEGER}, #{storeid,jdbcType=INTEGER}, #{sitnumber,jdbcType=INTEGER}, 
+      #{yn,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuyu.pojo.Sit" >
+    insert into sit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="storeid != null" >
+        storeid,
+      </if>
+      <if test="sitnumber != null" >
+        sitnumber,
+      </if>
+      <if test="yn != null" >
+        yn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="sitnumber != null" >
+        #{sitnumber,jdbcType=INTEGER},
+      </if>
+      <if test="yn != null" >
+        #{yn,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuyu.pojo.Sit" >
+    update sit
+    <set >
+      <if test="storeid != null" >
+        storeid = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="sitnumber != null" >
+        sitnumber = #{sitnumber,jdbcType=INTEGER},
+      </if>
+      <if test="yn != null" >
+        yn = #{yn,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuyu.pojo.Sit" >
+    update sit
+    set storeid = #{storeid,jdbcType=INTEGER},
+      sitnumber = #{sitnumber,jdbcType=INTEGER},
+      yn = #{yn,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="checkidsitnumber" parameterType="integer" resultType="integer">
+    select id
+    from sit
+    where sitnumber=#{sitnumber}
+  </select>
+  <select id="selectAll" parameterType="integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sit
+  </select>
+  <select id="selectbystoreid" parameterType="integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sit
+    where storeid=#{storeid}
+  </select>
+  <select id="checksitnumber" parameterType="int" resultType="int">
+    select count(1)
+    from sit
+    where sitnumber=#{sitnumber}
+  </select>
+</mapper>

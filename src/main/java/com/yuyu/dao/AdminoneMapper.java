@@ -21,4 +21,8 @@ public interface AdminoneMapper {
     Adminone selectLogin(@Param("username") String username, @Param("password") String password);
 
     int getAdminoneIdByusernmae(String username);
+
+    int getstoreidbyusername(String username);
+
+    int getId(String phone);
 }

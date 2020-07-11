@@ -63,6 +63,7 @@ public class AdminOneServiceImpl implements IAdminOneService {
         return ServerResponse.createBySuccess("注册成功");
     }
 
+
     /**
      * 一级管理员添加二级管理员
      *
@@ -81,5 +82,14 @@ public class AdminOneServiceImpl implements IAdminOneService {
             return ServerResponse.createByErrorMessage("添加失败");
         }
         return ServerResponse.createBySuccess("注册成功");
+    }
+
+    @Override
+    public ServerResponse<String> DeleteAdmintwo(String phone) {
+        int ResultId = adminoneMapper.getId(phone);
+        if (adminoneMapper.deleteByPrimaryKey(ResultId) > 0){
+            return ServerResponse.createBySuccessMessage("删除成功");
+        }
+        return ServerResponse.createByErrorMessage("删除失败");
     }
 }

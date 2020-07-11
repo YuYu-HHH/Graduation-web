@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuyu.dao.MenuMapper">
+    <resultMap id="BaseResultMap" type="com.yuyu.pojo.Menu">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="foodname" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="price" jdbcType="REAL" javaType="java.lang.Float"/>
+            <arg column="existence" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="picture" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tagone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tagtwo" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tagthree" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tagfour" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tagfive" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tagesix" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, foodname, price, existence, picture, tagone, tagtwo, tagthree, tagfour, tagfive, 
+    tagesix, create_time, update_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from menu
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.yuyu.pojo.Menu">
+    insert into menu (id, foodname, price, 
+      existence, picture, tagone, 
+      tagtwo, tagthree, tagfour, 
+      tagfive, tagesix, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{foodname,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{existence,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, #{tagone,jdbcType=VARCHAR}, 
+      #{tagtwo,jdbcType=VARCHAR}, #{tagthree,jdbcType=VARCHAR}, #{tagfour,jdbcType=VARCHAR}, 
+      #{tagfive,jdbcType=VARCHAR}, #{tagesix,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.yuyu.pojo.Menu">
+        insert into menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="foodname != null">
+                foodname,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="existence != null">
+                existence,
+            </if>
+            <if test="picture != null">
+                picture,
+            </if>
+            <if test="tagone != null">
+                tagone,
+            </if>
+            <if test="tagtwo != null">
+                tagtwo,
+            </if>
+            <if test="tagthree != null">
+                tagthree,
+            </if>
+            <if test="tagfour != null">
+                tagfour,
+            </if>
+            <if test="tagfive != null">
+                tagfive,
+            </if>
+            <if test="tagesix != null">
+                tagesix,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="foodname != null">
+                #{foodname,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=REAL},
+            </if>
+            <if test="existence != null">
+                #{existence,jdbcType=INTEGER},
+            </if>
+            <if test="picture != null">
+                #{picture,jdbcType=VARCHAR},
+            </if>
+            <if test="tagone != null">
+                #{tagone,jdbcType=VARCHAR},
+            </if>
+            <if test="tagtwo != null">
+                #{tagtwo,jdbcType=VARCHAR},
+            </if>
+            <if test="tagthree != null">
+                #{tagthree,jdbcType=VARCHAR},
+            </if>
+            <if test="tagfour != null">
+                #{tagfour,jdbcType=VARCHAR},
+            </if>
+            <if test="tagfive != null">
+                #{tagfive,jdbcType=VARCHAR},
+            </if>
+            <if test="tagesix != null">
+                #{tagesix,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yuyu.pojo.Menu">
+        update menu
+        <set>
+            <if test="foodname != null">
+                foodname = #{foodname,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=REAL},
+            </if>
+            <if test="existence != null">
+                existence = #{existence,jdbcType=INTEGER},
+            </if>
+            <if test="picture != null">
+                picture = #{picture,jdbcType=VARCHAR},
+            </if>
+            <if test="tagone != null">
+                tagone = #{tagone,jdbcType=VARCHAR},
+            </if>
+            <if test="tagtwo != null">
+                tagtwo = #{tagtwo,jdbcType=VARCHAR},
+            </if>
+            <if test="tagthree != null">
+                tagthree = #{tagthree,jdbcType=VARCHAR},
+            </if>
+            <if test="tagfour != null">
+                tagfour = #{tagfour,jdbcType=VARCHAR},
+            </if>
+            <if test="tagfive != null">
+                tagfive = #{tagfive,jdbcType=VARCHAR},
+            </if>
+            <if test="tagesix != null">
+                tagesix = #{tagesix,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.yuyu.pojo.Menu">
+    update menu
+    set foodname = #{foodname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      existence = #{existence,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR},
+      tagone = #{tagone,jdbcType=VARCHAR},
+      tagtwo = #{tagtwo,jdbcType=VARCHAR},
+      tagthree = #{tagthree,jdbcType=VARCHAR},
+      tagfour = #{tagfour,jdbcType=VARCHAR},
+      tagfive = #{tagfive,jdbcType=VARCHAR},
+      tagesix = #{tagesix,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectid" parameterType="String" resultType="int">
+    select id
+    from menu
+    where foodname = #{foodname}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from menu
+    </select>
+    <select id="getMenuId" resultType="integer" parameterType="string">
+    select id
+    from menu
+    where foodname=#{foodname}
+</select>
+    <select id="getid" resultType="integer" parameterType="integer">
+        select id
+        from menu
+        where menu_id=#{menuid}
+    </select>
+</mapper>

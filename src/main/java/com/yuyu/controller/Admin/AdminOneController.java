@@ -22,7 +22,6 @@ public class AdminOneController {
         if (StringUtils.isBlank(username)) {
             return ServerResponse.createByErrorMessage("用户名为空，请输入用户名");
         }
-        System.out.println("访问访问访问");
         return iAdminOneService.Login(username, password);
     }
 
@@ -37,5 +36,18 @@ public class AdminOneController {
     public ServerResponse<String> addadmintwo(Admintwo admintwo) {
         return iAdminOneService.AddAdmintwo(admintwo);
     }
+
+    @RequestMapping(value = "deleteadmintwo.do")
+    @ResponseBody
+    public ServerResponse<String> deleteadmintwo(String phone) {
+        return iAdminOneService.DeleteAdmintwo(phone);
+    }
+
+    @RequestMapping(value = "updatepassword.do")
+    @ResponseBody
+    public ServerResponse<String> updatepassword(String phone) {
+        return iAdminOneService.DeleteAdmintwo(phone);
+    }
+
 
 }

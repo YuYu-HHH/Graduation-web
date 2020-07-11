@@ -5,6 +5,8 @@ import java.util.Date;
 public class Store {
     private Integer id;
 
+    private Integer storeid;
+
     private String storename;
 
     private String storetype;
@@ -19,12 +21,17 @@ public class Store {
 
     private String businessid;
 
+    private String open;
+
     private Date createTime;
 
     private Date updateTime;
 
-    public Store(Integer id, String storename, String storetype, String location, String openningtime, String introduce, Integer adminid, String businessid, Date createTime, Date updateTime) {
+    private String license;
+
+    public Store(Integer id, Integer storeid, String storename, String storetype, String location, String openningtime, String introduce, Integer adminid, String businessid, String open, Date createTime, Date updateTime, String license) {
         this.id = id;
+        this.storeid = storeid;
         this.storename = storename;
         this.storetype = storetype;
         this.location = location;
@@ -32,8 +39,10 @@ public class Store {
         this.introduce = introduce;
         this.adminid = adminid;
         this.businessid = businessid;
+        this.open = open;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.license = license;
     }
 
     public Store() {
@@ -46,6 +55,14 @@ public class Store {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getStoreid() {
+        return storeid;
+    }
+
+    public void setStoreid(Integer storeid) {
+        this.storeid = storeid;
     }
 
     public String getStorename() {
@@ -104,6 +121,14 @@ public class Store {
         this.businessid = businessid == null ? null : businessid.trim();
     }
 
+    public String getOpen() {
+        return open;
+    }
+
+    public void setOpen(String open) {
+        this.open = open == null ? null : open.trim();
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -118,5 +143,13 @@ public class Store {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license == null ? null : license.trim();
     }
 }

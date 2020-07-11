@@ -196,6 +196,15 @@
         select
         <include refid="Base_Column_List"/>
         from menu
-        order by id asc;
+    </select>
+    <select id="getMenuId" resultType="integer" parameterType="string">
+    select id
+    from menu
+    where foodname=#{foodname}
+</select>
+    <select id="getid" resultType="integer" parameterType="integer">
+        select id
+        from menu
+        where menu_id=#{menuid}
     </select>
 </mapper>

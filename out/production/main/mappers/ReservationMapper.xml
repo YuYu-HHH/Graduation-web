@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuyu.dao.ReservationMapper" >
+  <resultMap id="BaseResultMap" type="com.yuyu.pojo.Reservation" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rnumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="storeid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="customerid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, rnumber, storeid, customerid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from reservation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from reservation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuyu.pojo.Reservation" >
+    insert into reservation (id, rnumber, storeid, 
+      customerid)
+    values (#{id,jdbcType=INTEGER}, #{rnumber,jdbcType=INTEGER}, #{storeid,jdbcType=INTEGER}, 
+      #{customerid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuyu.pojo.Reservation" >
+    insert into reservation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rnumber != null" >
+        rnumber,
+      </if>
+      <if test="storeid != null" >
+        storeid,
+      </if>
+      <if test="customerid != null" >
+        customerid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rnumber != null" >
+        #{rnumber,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null" >
+        #{customerid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuyu.pojo.Reservation" >
+    update reservation
+    <set >
+      <if test="rnumber != null" >
+        rnumber = #{rnumber,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        storeid = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null" >
+        customerid = #{customerid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuyu.pojo.Reservation" >
+    update reservation
+    set rnumber = #{rnumber,jdbcType=INTEGER},
+      storeid = #{storeid,jdbcType=INTEGER},
+      customerid = #{customerid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getcountBystoreid" parameterType="int" resultType="int">
+    select COUNT(1)
+    from reservation
+    where storeid=#{storeid}
+  </select>
+  <select id="getnumberBystoreid" parameterType="int" resultType="int">
+    select rnumber
+    from reservation
+    where storeid=#{storeid}
+  </select>
+  <select id="getidBycount" parameterType="int" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from reservation
+    where storeid=#{storeid}
+  </select>
+  <select id="countBystoreid" parameterType="int" resultType="int">
+    select count(1)
+    from reservation
+    where storeid=#{storeid}
+  </select>
+  <select id="reservationBystoreid" parameterType="int" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from reservation
+    where storeid=#{storeid}
+  </select>
+  <select id="getIdBystoreid" parameterType="map" resultType="int">
+    select id
+    from reservation
+    where storeid=#{storeid}
+    and rnumber=#{rnumber}
+  </select>
+  <select id="confirmcustomer" parameterType="integer" resultType="integer">
+    select count(1)
+    from reservation
+    where customerid=#{customerid}
+  </select>
+  <select id="getrnumber" parameterType="integer" resultType="int">
+    select rnumber
+    from reservation
+    where customerid=#{customerid}
+  </select>
+</mapper>

@@ -16,4 +16,5 @@ public interface IMenuService {
     ServerResponse<Menu> SelectMenuByname(String foodname);
 
     ServerResponse<PageInfo> SelectAll(int pageNum, int pageSize);
+
 }

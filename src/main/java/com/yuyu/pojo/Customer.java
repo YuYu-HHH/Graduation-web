@@ -17,7 +17,9 @@ public class Customer {
 
     private Date updateTime;
 
-    public Customer(Integer id, String phone, String password, String petname, String accounts, Date createTime, Date updateTime) {
+    private String love;
+
+    public Customer(Integer id, String phone, String password, String petname, String accounts, Date createTime, Date updateTime, String love) {
         this.id = id;
         this.phone = phone;
         this.password = password;
@@ -25,6 +27,7 @@ public class Customer {
         this.accounts = accounts;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.love = love;
     }
 
     public Customer() {
@@ -85,5 +88,13 @@ public class Customer {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getLove() {
+        return love;
+    }
+
+    public void setLove(String love) {
+        this.love = love == null ? null : love.trim();
     }
 }

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuyu.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.yuyu.pojo.Order" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="adminid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="item_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="payment_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="payment" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="evaluation_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="situation" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, adminid, order_no, item_id, user_id, payment_time, payment, create_time, update_time, 
+    evaluation_id, situation
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_table
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_table
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuyu.pojo.Order" >
+    insert into order_table (id, adminid, order_no, 
+      item_id, user_id, payment_time, 
+      payment, create_time, update_time, 
+      evaluation_id, situation)
+    values (#{id,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, 
+      #{itemId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{paymentTime,jdbcType=TIMESTAMP}, 
+      #{payment,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{evaluationId,jdbcType=INTEGER}, #{situation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuyu.pojo.Order" >
+    insert into order_table
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adminid != null" >
+        adminid,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="paymentTime != null" >
+        payment_time,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="evaluationId != null" >
+        evaluation_id,
+      </if>
+      <if test="situation != null" >
+        situation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null" >
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluationId != null" >
+        #{evaluationId,jdbcType=INTEGER},
+      </if>
+      <if test="situation != null" >
+        #{situation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuyu.pojo.Order" >
+    update order_table
+    <set >
+      <if test="adminid != null" >
+        adminid = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="paymentTime != null" >
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluationId != null" >
+        evaluation_id = #{evaluationId,jdbcType=INTEGER},
+      </if>
+      <if test="situation != null" >
+        situation = #{situation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuyu.pojo.Order" >
+    update order_table
+    set adminid = #{adminid,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      item_id = #{itemId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      payment = #{payment,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      evaluation_id = #{evaluationId,jdbcType=INTEGER},
+      situation = #{situation,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectall" resultMap="BaseResultMap" parameterType="integer">
+    select
+    <include refid="Base_Column_List" />
+    from order_table
+    where user_id=#{userid}
+  </select>
+  <select id="selectalBystore" resultMap="BaseResultMap" parameterType="integer">
+    select
+    <include refid="Base_Column_List" />
+    from order_table
+    where order_no=#{order_no}
+  </select>
+  <update id="updateEvaluationIdByitemid" parameterType="map">
+    update order_table
+    set evaluation_id = #{evaluationId}
+    where item_id = #{itemId}
+  </update>
+</mapper>

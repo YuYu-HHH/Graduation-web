@@ -17,6 +17,7 @@ public class StoreServiceImpl implements IStoreService {
     @Autowired
     private StoreMapper storeMapper;
 
+
     /**
      * 增加
      *
@@ -75,10 +76,42 @@ public class StoreServiceImpl implements IStoreService {
     public ServerResponse<String> update_Store(Store store) {
         Store updatestore = new Store();
 
-        /*updatestore.setId(store.getId());
-        updatestore.setBusinessid(store.getBusinessid());*/
-
         storeMapper.updateByPrimaryKeySelective(store);
         return ServerResponse.createBySuccess("更新信息成功");
+    }
+
+    /**
+     * 通过username->storeid查看商店的开闭情况
+     * @param username
+     * @return
+     */
+    @Override
+    public ServerResponse<String> show_openstore(String username) {
+        int newstoreid =adminoneMapper.getstoreidbyusername(username);
+        if ((storeMapper.checkopen(newstoreid)).equals("1"))
+        {
+            return ServerResponse.createBySuccessMessage("1");
+        }
+        else{
+            return ServerResponse.createBySuccessMessage("0");
+        }
+    }
+
+    @Override
+    public ServerResponse<String> update_openstore(String username) {
+        int newstoreid =adminoneMapper.getstoreidbyusername(username);
+        if (storeMapper.updateopen(newstoreid) > 0){
+            return ServerResponse.createBySuccessMessage("success");
+        }
+        return ServerResponse.createBySuccess("fail");
+    }
+
+    @Override
+    public ServerResponse<String> update_closestore(String username) {
+        int newstoreid =adminoneMapper.getstoreidbyusername(username);
+        if (storeMapper.updateclose(newstoreid) > 0){
+            return ServerResponse.createBySuccessMessage("success");
+        }
+        return ServerResponse.createBySuccess("fail");
     }
 }

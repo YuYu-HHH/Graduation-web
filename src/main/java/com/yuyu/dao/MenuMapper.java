@@ -20,4 +20,6 @@ public interface MenuMapper {
     int selectid(String foodname);
 
     List<Menu> selectAll();
+
+    int getMenuId(String foodname);
 }

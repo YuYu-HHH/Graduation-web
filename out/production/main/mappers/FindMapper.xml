@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuyu.dao.FindMapper" >
+  <resultMap id="BaseResultMap" type="com.yuyu.pojo.Find" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pictureOne" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pictureTwo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PictureThree" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="text" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="adminid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TagOne" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TagTwo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TagThree" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, pictureOne, pictureTwo, PictureThree, text, adminid, user_id, TagOne, 
+    TagTwo, TagThree
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from find
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from find
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuyu.pojo.Find" >
+    insert into find (id, title, pictureOne, 
+      pictureTwo, PictureThree, text, 
+      adminid, user_id, TagOne, 
+      TagTwo, TagThree)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{pictureone,jdbcType=VARCHAR}, 
+      #{picturetwo,jdbcType=VARCHAR}, #{picturethree,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, 
+      #{adminid,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{tagone,jdbcType=VARCHAR}, 
+      #{tagtwo,jdbcType=VARCHAR}, #{tagthree,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuyu.pojo.Find" >
+    insert into find
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="pictureone != null" >
+        pictureOne,
+      </if>
+      <if test="picturetwo != null" >
+        pictureTwo,
+      </if>
+      <if test="picturethree != null" >
+        PictureThree,
+      </if>
+      <if test="text != null" >
+        text,
+      </if>
+      <if test="adminid != null" >
+        adminid,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="tagone != null" >
+        TagOne,
+      </if>
+      <if test="tagtwo != null" >
+        TagTwo,
+      </if>
+      <if test="tagthree != null" >
+        TagThree,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureone != null" >
+        #{pictureone,jdbcType=VARCHAR},
+      </if>
+      <if test="picturetwo != null" >
+        #{picturetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="picturethree != null" >
+        #{picturethree,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="adminid != null" >
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tagone != null" >
+        #{tagone,jdbcType=VARCHAR},
+      </if>
+      <if test="tagtwo != null" >
+        #{tagtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="tagthree != null" >
+        #{tagthree,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuyu.pojo.Find" >
+    update find
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureone != null" >
+        pictureOne = #{pictureone,jdbcType=VARCHAR},
+      </if>
+      <if test="picturetwo != null" >
+        pictureTwo = #{picturetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="picturethree != null" >
+        PictureThree = #{picturethree,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="adminid != null" >
+        adminid = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tagone != null" >
+        TagOne = #{tagone,jdbcType=VARCHAR},
+      </if>
+      <if test="tagtwo != null" >
+        TagTwo = #{tagtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="tagthree != null" >
+        TagThree = #{tagthree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuyu.pojo.Find" >
+    update find
+    set title = #{title,jdbcType=VARCHAR},
+      pictureOne = #{pictureone,jdbcType=VARCHAR},
+      pictureTwo = #{picturetwo,jdbcType=VARCHAR},
+      PictureThree = #{picturethree,jdbcType=VARCHAR},
+      text = #{text,jdbcType=VARCHAR},
+      adminid = #{adminid,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      TagOne = #{tagone,jdbcType=VARCHAR},
+      TagTwo = #{tagtwo,jdbcType=VARCHAR},
+      TagThree = #{tagthree,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from find
+  </select>
+</mapper>
